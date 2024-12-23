@@ -4,6 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.1</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <groupId>com.rs</groupId>
     <artifactId>showcase</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -17,60 +24,30 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- version properties -->
-        <spring-boot.version>3.4.1</spring-boot.version>
-
-        <!-- keep in sync with spring-boot managed versions -->
-        <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
-        <maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
-        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-
-        <!-- other plugins, not managed by spring-boot -->
+        <!-- maven plugins, not managed by spring-boot -->
         <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
         <openapi-generator-maven-plugin.version>7.10.0</openapi-generator-maven-plugin.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>${maven-assembly-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-clean-plugin</artifactId>
-                    <version>${maven-clean-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven-resources-plugin.version}</version>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <testFailureIgnore>false</testFailureIgnore>
+                        <rerunFailingTestsCount>3</rerunFailingTestsCount>
+                        <includes>
+                            <include>**/*IT.java</include>
+                            <include>**/*Test.java</include>
+                        </includes>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot.version}</version>
                     <configuration>
                         <excludes>
                             <exclude>
@@ -93,19 +70,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-surefire-plugin.version}</version>
-                    <configuration>
-                        <testFailureIgnore>false</testFailureIgnore>
-                        <rerunFailingTestsCount>3</rerunFailingTestsCount>
-                        <includes>
-                            <include>**/*IT.java</include>
-                            <include>**/*Test.java</include>
-                        </includes>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.openapitools</groupId>
