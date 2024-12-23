@@ -1,0 +1,131 @@
+openapi: 3.0.4
+info:
+  title: Showcase Service
+  description: OpenAPI spec describing the Showcase REST Service
+  version: 0.1.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+paths:
+  /todo:
+    post:
+      summary: Create a todo
+      operationId: createTodo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTodoDto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTodoDto'
+  /todo/{id}:
+    get:
+      summary: Get a todo
+      operationId: getTodo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the todo
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTodoDto'
+        '404':
+          description: Not Found
+    put:
+      summary: Update a todo
+      operationId: updateTodo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the todo
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTodoDto'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTodoDto'
+        '404':
+          description: Not Found
+    delete:
+      summary: Delete a todo
+      operationId: deleteTodo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the todo
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+
+components:
+  schemas:
+    CreateTodoDto:
+        type: object
+        required:
+            - title
+            - content
+        properties:
+          title:
+            type: string
+          content:
+            type: string
+
+    GetTodoDto:
+        type: object
+        required:
+          - id
+          - title
+          - content
+          - completed
+          - createdAt
+          - updatedAt
+        properties:
+          id:
+            type: integer
+            format: int64
+          title:
+            type: string
+          content:
+            type: string
+          completed:
+            type: boolean
+            default: false
+          createdAt:
+            description: 'Timestamp when the Todo was created including Timezone information (UTC)'
+            type: string
+            format: date-time
+          updatedAt:
+            description: 'Timestamp when the Todo was last updated including Timezone information (UTC)'
+            type: string
+            format: date-time
