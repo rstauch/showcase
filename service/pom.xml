@@ -19,6 +19,13 @@
         <java.version>21</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- sonarqube configuration -->
+        <sonar.coverage.exclusions>
+            **/Main.java,
+            **/*Entity.java
+        </sonar.coverage.exclusions>
+
     </properties>
 
     <dependencies>
