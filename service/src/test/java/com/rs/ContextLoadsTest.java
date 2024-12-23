@@ -7,5 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ContextLoadsTest {
 
   @Test
-  void contextLoads() {}
+  void contextLoads() {
+    // verify Spring Boot Context is successfully loaded
+  }
 }
