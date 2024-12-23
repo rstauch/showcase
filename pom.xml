@@ -20,19 +20,29 @@
         <!-- version properties -->
         <spring-boot.version>3.4.1</spring-boot.version>
 
-        <!-- keep in sync with spring-boot lombok version -->
-        <lombok-annotation-processor.version>1.18.36</lombok-annotation-processor.version>
+        <!-- keep in sync with spring-boot managed versions -->
         <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
         <maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-        <spring-boot-maven-plugin.version>${spring-boot.version}</spring-boot-maven-plugin.version>
 
+        <!-- other plugins, not managed by spring-boot -->
         <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
-
         <openapi-generator-maven-plugin.version>7.10.0</openapi-generator-maven-plugin.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement>
@@ -60,7 +70,7 @@
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
-                    <version>${spring-boot-maven-plugin.version}</version>
+                    <version>${spring-boot.version}</version>
                     <configuration>
                         <excludes>
                             <exclude>
@@ -105,18 +115,5 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 
 </project>

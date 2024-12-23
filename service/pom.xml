@@ -49,7 +49,6 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok-annotation-processor.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
