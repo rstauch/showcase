@@ -16,12 +16,32 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- version properties -->
         <spring-boot.version>3.4.1</spring-boot.version>
+
+        <!-- keep in sync with spring-boot lombok version -->
         <lombok-annotation-processor.version>1.18.36</lombok-annotation-processor.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <spring-boot-maven-plugin.version>${spring-boot.version}</spring-boot-maven-plugin.version>
+
+        <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
 
         <openapi-generator-maven-plugin.version>7.10.0</openapi-generator-maven-plugin.version>
-        <base-package>com.rs</base-package>
     </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>${openapi-generator-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <dependencyManagement>
         <dependencies>
