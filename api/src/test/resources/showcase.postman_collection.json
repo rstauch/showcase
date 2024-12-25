@@ -1,0 +1,283 @@
+{
+  "info": {
+    "_postman_id": "43a7a020-6d90-45ed-bc8a-263389155d9c",
+    "name": "showcase",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27780918"
+  },
+  "item": [
+    {
+      "name": "TODOs",
+      "item": [
+        {
+          "name": "api/v1/todo",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 201\", function () {",
+                  "  pm.expect(pm.response.code).to.equal(201);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields - id, title, content, completed, createdAt, and updatedAt\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData).to.have.property('id');",
+                  "    pm.expect(responseData).to.have.property('title');",
+                  "    pm.expect(responseData).to.have.property('content');",
+                  "    pm.expect(responseData).to.have.property('completed');",
+                  "    pm.expect(responseData).to.have.property('createdAt');",
+                  "    pm.expect(responseData).to.have.property('updatedAt');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"ID is a non-negative integer\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.id).to.be.a('number');",
+                  "    pm.expect(responseData.id).to.be.at.least(0, \"ID should be a non-negative integer\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title and content are non-empty strings\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "  pm.expect(responseData.content).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Content should not be empty\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample Todo Title\",\n  \"content\": \"This is a sample todo content.\",\n  \"completed\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/v1/todo",
+              "protocol": "{{protocol}}",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "api",
+                "v1",
+                "todo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "api/v1/todo/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "  pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields - id, title, content, completed, createdAt, and updatedAt\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData).to.have.property('id');",
+                  "    pm.expect(responseData).to.have.property('title');",
+                  "    pm.expect(responseData).to.have.property('content');",
+                  "    pm.expect(responseData).to.have.property('completed');",
+                  "    pm.expect(responseData).to.have.property('createdAt');",
+                  "    pm.expect(responseData).to.have.property('updatedAt');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"ID is a non-negative integer\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.id).to.be.a('number');",
+                  "    pm.expect(responseData.id).to.be.at.least(0, \"ID should be a non-negative integer\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title and content are non-empty strings\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "  pm.expect(responseData.content).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Content should not be empty\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample Todo Title\",\n  \"content\": \"This is a sample todo content.\",\n  \"completed\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/v1/todo/1",
+              "protocol": "{{protocol}}",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "api",
+                "v1",
+                "todo",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "api/v1/todo/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 200\", function () {",
+                  "  pm.expect(pm.response.code).to.equal(200);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Response has the required fields - id, title, content, completed, createdAt, and updatedAt\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData).to.be.an('object');",
+                  "    pm.expect(responseData).to.have.property('id');",
+                  "    pm.expect(responseData).to.have.property('title');",
+                  "    pm.expect(responseData).to.have.property('content');",
+                  "    pm.expect(responseData).to.have.property('completed');",
+                  "    pm.expect(responseData).to.have.property('createdAt');",
+                  "    pm.expect(responseData).to.have.property('updatedAt');",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"ID is a non-negative integer\", function () {",
+                  "    const responseData = pm.response.json();",
+                  "    ",
+                  "    pm.expect(responseData.id).to.be.a('number');",
+                  "    pm.expect(responseData.id).to.be.at.least(0, \"ID should be a non-negative integer\");",
+                  "});",
+                  "",
+                  "",
+                  "pm.test(\"Title and content are non-empty strings\", function () {",
+                  "  const responseData = pm.response.json();",
+                  "  ",
+                  "  pm.expect(responseData).to.be.an('object');",
+                  "  pm.expect(responseData.title).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Title should not be empty\");",
+                  "  pm.expect(responseData.content).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Content should not be empty\");",
+                  "});",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample updated Todo Title\",\n  \"content\": \"This is a sample updated todo content.\",\n  \"completed\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/v1/todo/1",
+              "protocol": "{{protocol}}",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "api",
+                "v1",
+                "todo",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "api/v1/todo/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Response status code is 204\", function () {",
+                  "  pm.expect(pm.response.code).to.equal(204);",
+                  "});",
+                  "",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{protocol}}://{{host}}:{{port}}/api/v1/todo/1",
+              "protocol": "{{protocol}}",
+              "host": [
+                "{{host}}"
+              ],
+              "port": "{{port}}",
+              "path": [
+                "api",
+                "v1",
+                "todo",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

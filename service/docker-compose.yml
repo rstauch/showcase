@@ -1,0 +1,10 @@
+services:
+  database:
+    image: 'postgres:17.2-alpine3.21'
+    ports:
+      # - '5432:5432' # fixed port
+      - '5432' # dynamic port
+    environment:
+      - 'POSTGRES_USER=user'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_DB=showcase'

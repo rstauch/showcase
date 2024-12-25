@@ -4,10 +4,10 @@ info:
   description: OpenAPI spec describing the Showcase REST Service
   version: 0.1.0
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8080/api
     description: Local development server
 paths:
-  /todo:
+  /v1/todo:
     post:
       summary: Create a todo
       operationId: createTodo
@@ -24,7 +24,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetTodoDto'
-  /todo/{id}:
+  /v1/todo/{id}:
     get:
       summary: Get a todo
       operationId: getTodo
@@ -91,41 +91,43 @@ paths:
 components:
   schemas:
     CreateTodoDto:
-        type: object
-        required:
-            - title
-            - content
-        properties:
-          title:
-            type: string
-          content:
-            type: string
-
+      type: object
+      required:
+        - title
+        - content
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        completed:
+          type: boolean
+          default: false
     GetTodoDto:
-        type: object
-        required:
-          - id
-          - title
-          - content
-          - completed
-          - createdAt
-          - updatedAt
-        properties:
-          id:
-            type: integer
-            format: int64
-          title:
-            type: string
-          content:
-            type: string
-          completed:
-            type: boolean
-            default: false
-          createdAt:
-            description: 'Timestamp when the Todo was created including Timezone information (UTC)'
-            type: string
-            format: date-time
-          updatedAt:
-            description: 'Timestamp when the Todo was last updated including Timezone information (UTC)'
-            type: string
-            format: date-time
+      type: object
+      required:
+        - id
+        - title
+        - content
+        - completed
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        content:
+          type: string
+        completed:
+          type: boolean
+          default: false
+        createdAt:
+          description: 'Timestamp when the Todo was created including Timezone information (UTC)'
+          type: string
+          format: date-time
+        updatedAt:
+          description: 'Timestamp when the Todo was last updated including Timezone information (UTC)'
+          type: string
+          format: date-time
