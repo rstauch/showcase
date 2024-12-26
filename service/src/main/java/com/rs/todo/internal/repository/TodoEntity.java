@@ -37,18 +37,12 @@ public class TodoEntity {
   private boolean completed = false;
 
   @CreatedDate
-  @Column(
-      name = "created_at",
-      nullable = false,
-      columnDefinition = "TIMESTAMP WITH TIME ZONE AT TIME ZONE UTC")
+  @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE")
   @NotNull
   private OffsetDateTime createdAt;
 
   @LastModifiedDate
-  @Column(
-      name = "updated_at",
-      nullable = false,
-      columnDefinition = "TIMESTAMP WITH TIME ZONE AT TIME ZONE UTC")
+  @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE")
   @NotNull
   private OffsetDateTime updatedAt;
 }
