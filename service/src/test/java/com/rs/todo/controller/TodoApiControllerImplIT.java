@@ -1,4 +1,4 @@
-package com.rs.controller;
+package com.rs.todo.controller;
 
 import static com.rs.BaseIT.TestConfig.FIXED_TIME;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
@@ -11,6 +11,7 @@ import com.github.database.rider.core.api.dataset.DataSetFormat;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.core.api.dataset.SeedStrategy;
 import com.github.database.rider.core.api.exporter.ExportDataSet;
+import com.rs.BaseControllerIT;
 import com.rs.model.CreateTodoDto;
 import com.rs.model.GetTodoDto;
 import org.junit.jupiter.api.Test;

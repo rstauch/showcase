@@ -2,7 +2,7 @@ package com.rs;
 
 import static com.rs.BaseIT.*;
 
-import com.rs.properties.TestContainerConfigurationProperties;
+import com.rs.showcase.config.properties.TestContainerConfigurationProperties;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

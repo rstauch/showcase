@@ -1,4 +1,4 @@
-package com.rs.controller;
+package com.rs.showcase.rest;
 
 import java.net.URI;
 import org.springframework.http.HttpStatus;

@@ -1,12 +1,11 @@
-package com.rs.controller;
+package com.rs.todo.controller;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
 import com.rs.api.V1ApiDelegate;
-import com.rs.mapper.TodoEntityDtoMapper;
 import com.rs.model.CreateTodoDto;
 import com.rs.model.GetTodoDto;
-import com.rs.repository.TodoRepository;
+import com.rs.todo.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -17,47 +16,35 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TodoApiControllerImpl implements V1ApiDelegate {
 
-  private final TodoRepository todoRepository;
-  private final TodoEntityDtoMapper todoEntityDtoMapper;
+  private final TodoService todoService;
 
   @Override
   public ResponseEntity<GetTodoDto> createTodo(CreateTodoDto createTodoDto) {
-    var entity = todoEntityDtoMapper.fromDto(createTodoDto);
-    var savedEntity = todoRepository.save(entity);
-    var dto = todoEntityDtoMapper.fromEntity(savedEntity);
-
+    var dto = todoService.createTodo(createTodoDto);
     return ResponseEntity.status(CREATED).body(dto);
   }
 
   @Override
   public ResponseEntity<Void> deleteTodo(Long id) {
-    todoRepository.deleteById(id);
+    todoService.deleteTodo(id);
     return ResponseEntity.noContent().build();
   }
 
   @Override
   public ResponseEntity<GetTodoDto> getTodo(Long id) {
-    var entity = todoRepository.findById(id);
-    if (entity.isEmpty()) {
+    var dto = todoService.getTodo(id);
+    if (dto.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
-
-    var dto = todoEntityDtoMapper.fromEntity(entity.get());
-    return ResponseEntity.ok(dto);
+    return ResponseEntity.ok(dto.get());
   }
 
   @Override
   public ResponseEntity<GetTodoDto> updateTodo(Long id, CreateTodoDto createTodoDto) {
-    var optExistingEntity = todoRepository.findById(id);
-    if (optExistingEntity.isEmpty()) {
+    var dto = todoService.updateTodo(id, createTodoDto);
+    if (dto.isEmpty()) {
       return ResponseEntity.notFound().build();
     }
-
-    var existingEntity = optExistingEntity.get();
-    todoEntityDtoMapper.updateEntityFromDto(createTodoDto, existingEntity);
-
-    var updatedEntity = todoRepository.save(existingEntity);
-    var dto = todoEntityDtoMapper.fromEntity(updatedEntity);
-    return ResponseEntity.ok(dto);
+    return ResponseEntity.ok(dto.get());
   }
 }

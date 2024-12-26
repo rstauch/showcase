@@ -1,4 +1,4 @@
-package com.rs.config;
+package com.rs.showcase.rest;
 
 import jakarta.servlet.*;
 import java.io.IOException;

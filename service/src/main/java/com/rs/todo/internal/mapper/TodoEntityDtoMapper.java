@@ -1,8 +1,8 @@
-package com.rs.mapper;
+package com.rs.todo.internal.mapper;
 
 import com.rs.model.CreateTodoDto;
 import com.rs.model.GetTodoDto;
-import com.rs.repository.TodoEntity;
+import com.rs.todo.internal.repository.TodoEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;

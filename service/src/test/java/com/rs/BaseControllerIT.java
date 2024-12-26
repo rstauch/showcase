@@ -1,7 +1,6 @@
-package com.rs.controller;
+package com.rs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rs.BaseIT;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

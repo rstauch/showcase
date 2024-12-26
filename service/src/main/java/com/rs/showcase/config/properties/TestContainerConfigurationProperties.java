@@ -1,4 +1,4 @@
-package com.rs.properties;
+package com.rs.showcase.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

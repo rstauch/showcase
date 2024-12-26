@@ -1,5 +1,6 @@
-package com.rs.repository;
+package com.rs.showcase.db;
 
+import com.rs.todo.internal.repository.TodoEntity;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import java.time.Clock;

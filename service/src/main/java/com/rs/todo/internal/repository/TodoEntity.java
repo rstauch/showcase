@@ -1,5 +1,6 @@
-package com.rs.repository;
+package com.rs.todo.internal.repository;
 
+import com.rs.showcase.db.ClockAwareAuditingEntityListener;
 import jakarta.persistence.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
