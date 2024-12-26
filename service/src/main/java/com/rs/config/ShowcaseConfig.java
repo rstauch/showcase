@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.rs.RFC3339DateFormat;
 import java.time.Clock;
 import java.time.ZoneId;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,5 +37,14 @@ public class ShowcaseConfig {
     objectMapper.registerModule(new JavaTimeModule());
 
     return objectMapper;
+  }
+
+  @Bean
+  public FilterRegistrationBean<MdcClearFilter> mdcClearFilter() {
+    var registration = new FilterRegistrationBean<MdcClearFilter>();
+    registration.setFilter(new MdcClearFilter());
+    registration.addUrlPatterns("/*");
+    registration.setOrder(Integer.MAX_VALUE);
+    return registration;
   }
 }
