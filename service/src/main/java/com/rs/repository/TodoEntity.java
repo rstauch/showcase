@@ -32,7 +32,8 @@ public class TodoEntity {
   private String content;
 
   @Column(nullable = false)
-  private Boolean completed = false;
+  @NotNull
+  private boolean completed = false;
 
   @CreatedDate
   @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE")
