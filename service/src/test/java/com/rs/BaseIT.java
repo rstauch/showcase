@@ -34,6 +34,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public abstract class BaseIT {
 
+  static {
+    System.setProperty("user.timezone", "Europe/Berlin");
+  }
+
   public static final String IT_PROFILE = "test";
   public static final String FLYWAY_SCHEMA_TABLE = "mps_flyway_schema_history";
 
