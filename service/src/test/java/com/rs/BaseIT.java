@@ -6,9 +6,11 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.configuration.Orthography;
 import com.github.database.rider.junit5.api.DBRider;
+import jakarta.annotation.PostConstruct;
 import java.time.Clock;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.TimeZone;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,7 +37,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 public abstract class BaseIT {
 
   static {
-    System.setProperty("user.timezone", "Europe/Berlin");
+    System.setProperty("user.timezone", "GMT");
+  }
+
+  @PostConstruct
+  void started() {
+    TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
   }
 
   public static final String IT_PROFILE = "test";
