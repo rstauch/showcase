@@ -27,13 +27,18 @@
         <!-- maven plugins, not managed by spring-boot -->
         <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
         <openapi-generator-maven-plugin.version>7.10.0</openapi-generator-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
 
         <!-- sonarqube -->
         <sonar.organization>rstauch-org</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.coverage.jacoco.xmlReportPaths>
+            ./service/target/site/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
 
         <!-- openapi generator -->
         <base-package>com.rs</base-package>
+
     </properties>
 
 
@@ -82,6 +87,11 @@
                     <groupId>org.openapitools</groupId>
                     <artifactId>openapi-generator-maven-plugin</artifactId>
                     <version>${openapi-generator-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
