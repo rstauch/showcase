@@ -4,7 +4,7 @@ import com.tngtech.archunit.core.domain.JavaClass;
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.core.ApplicationModules;
 
-public class ArchTest {
+class ArchTest {
 
   @Test
   void verifiesModularStructure() {

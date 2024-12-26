@@ -198,4 +198,35 @@ class TodoApiControllerImplIT extends BaseControllerIT {
         () -> assertThat(result.getCreatedAt()).isEqualTo(FIXED_TIME),
         () -> assertThat(result.getUpdatedAt()).isEqualTo(FIXED_TIME));
   }
+
+  @Test
+  @DataSet(
+      value = {"datasets/todo/empty.yaml"},
+      skipCleaningFor = FLYWAY_SCHEMA_TABLE,
+      cleanBefore = true,
+      transactional = false,
+      cleanAfter = false,
+      disableConstraints = true,
+      strategy = SeedStrategy.TRUNCATE_INSERT)
+  @ExportDataSet(
+      format = DataSetFormat.YML,
+      outputName = "target/exported/TodoApiControllerImplIT/return404IfTodoNotFound.yaml",
+      includeTables = {"todos"})
+  @ExpectedDataSet(value = {"datasets/todo/empty.yaml"})
+  void return404IfTodoNotFound() {
+    var updatedTodoDto = new CreateTodoDto();
+    updatedTodoDto.setTitle("some-updated-title");
+    updatedTodoDto.setContent("some-updated-content");
+    updatedTodoDto.setCompleted(true);
+
+    var json = toJson(updatedTodoDto);
+
+    given()
+        .body(json)
+        .header("Content-Type", "application/json")
+        .when()
+        .put("/api/v1/todo/1")
+        .then()
+        .statusCode(NOT_FOUND.value());
+  }
 }

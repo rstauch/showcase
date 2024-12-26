@@ -246,7 +246,6 @@
                             </supportingFilesToGenerate>
 
                             <!-- https://github.com/OpenAPITools/openapi-generator/issues/13677 -->
-                            <!--                            <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>-->
                             <generateApiTests>false</generateApiTests>
                             <generateModelTests>false</generateModelTests>
                             <addCompileSourceRoot>true</addCompileSourceRoot>
