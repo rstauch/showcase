@@ -2,9 +2,9 @@ package com.rs;
 
 import static com.rs.BaseIT.*;
 
+import com.rs.properties.TestContainerConfigurationProperties;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
@@ -27,8 +27,7 @@ public class Showcase {
   @Bean
   @ServiceConnection
   public JdbcDatabaseContainer postgreSqlContainer(
-      // FIXME: custom property processing
-      @Value("${app.tc.postgres.port:0}") Integer postgresPort) {
+      TestContainerConfigurationProperties testContainerConfigurationProperties) {
     var container =
         new PostgreSQLContainer<>(DockerImageName.parse("postgres:" + POSTGRES_CONTAINER_VERSION))
             .withDatabaseName(POSTGRES_DB_NAME)
@@ -36,9 +35,11 @@ public class Showcase {
             .withPassword(POSTGRES_PASSWORD)
             .withStartupTimeoutSeconds(300);
 
-    if (postgresPort != null && postgresPort > 0) {
-      container.addExposedPort(postgresPort);
-      container.setPortBindings(List.of(postgresPort + ":5432"));
+    if (testContainerConfigurationProperties.getPostgresPort() != null
+        && testContainerConfigurationProperties.getPostgresPort() > 0) {
+      container.addExposedPort(testContainerConfigurationProperties.getPostgresPort());
+      container.setPortBindings(
+          List.of(testContainerConfigurationProperties.getPostgresPort() + ":5432"));
     }
     return container;
   }
