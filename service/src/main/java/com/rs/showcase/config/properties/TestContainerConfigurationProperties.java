@@ -7,6 +7,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "app.tc")
 public class TestContainerConfigurationProperties {
 
-  /** The port to expose the PostgreSQL container on. A non 0 zero value results in a fixed port. */
+  /** The port to expose the PostgreSQL container on. A non zero value results in a fixed port. */
   private Integer postgresPort = 0;
 }
