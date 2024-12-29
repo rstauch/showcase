@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>client</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -94,10 +95,10 @@
                             </configOptions>
                             <library>jersey3</library>
                             <inputSpec>${project.parent.basedir}/api/src/main/resources/openapi.yaml</inputSpec>
-                            <packageName>${base-package}</packageName>
-                            <apiPackage>${base-package}.api</apiPackage>
-                            <modelPackage>${base-package}.model</modelPackage>
-                            <invokerPackage>${base-package}</invokerPackage>
+                            <packageName>${project.groupId}</packageName>
+                            <apiPackage>${project.groupId}.api</apiPackage>
+                            <modelPackage>${project.groupId}.model</modelPackage>
+                            <invokerPackage>${project.groupId}</invokerPackage>
                         </configuration>
                     </execution>
                 </executions>
