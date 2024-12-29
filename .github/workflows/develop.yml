@@ -47,6 +47,7 @@ jobs:
         with:
           files: |
             ./service/target/surefire-reports/TEST-*.xml
+            ./NotificationService/target/surefire-reports/TEST-*.xml
 
       # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
       - name: Update dependency graph

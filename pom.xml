@@ -19,6 +19,8 @@
         <module>service</module>
         <module>api</module>
         <module>client</module>
+        <module>NotificationService</module>
+        <module>report-aggregate</module>
     </modules>
 
     <properties>
@@ -33,13 +35,47 @@
         <sonar.organization>rstauch-org</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>
-            ./service/target/site/jacoco-aggregate/jacoco.xml
+            ${project.basedir}/report-aggregate/target/site/jacoco-aggregate/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
 
-        <!-- openapi generator -->
-        <base-package>com.rs</base-package>
+        <!-- sonarqube configuration -->
+        <sonar.coverage.exclusions>
+            **/Main.java,
+            **/*Entity.java
+        </sonar.coverage.exclusions>
 
+        <!-- dependencies -->
+        <spring-modulith-bom.version>1.3.1</spring-modulith-bom.version>
+        <logbook.version>3.10.0</logbook.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.7.0</springdoc-openapi-starter-webmvc-ui.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.zalando</groupId>
+                <artifactId>logbook-spring-boot-starter</artifactId>
+                <version>${logbook.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.modulith</groupId>
+                <artifactId>spring-modulith-bom</artifactId>
+                <version>${spring-modulith-bom.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <build>
